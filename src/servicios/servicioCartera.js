@@ -36,7 +36,10 @@ class ServicioCartera {
         model: Pago,
         as: 'pagos'
       }],
-      order: [[{ model: Pago, as: 'pagos' }, 'fechaRaw', 'ASC'], [{ model: Pago, as: 'pagos' }, 'id', 'ASC']]
+      order: [
+        [{ model: Pago, as: 'pagos' }, 'fechaRaw', 'DESC'],
+        [{ model: Pago, as: 'pagos' }, 'id', 'DESC']
+      ]
     });
 
     if (!cotizacion) {

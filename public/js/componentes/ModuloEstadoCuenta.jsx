@@ -84,10 +84,21 @@ function ModuloEstadoCuenta({ cuentaId, alVolver, mostrarMensaje }) {
   const saldoTotal = parseFloat(cuenta.capitalRestante) + parseFloat(cuenta.interesRestante);
   const cuotaSugerida = (parseFloat(cuenta.capitalInicial) + parseFloat(cuenta.interesTotal)) / parseInt(cuenta.cuotasTotales, 10);
 
-  const totalPagos = (cuenta && cuenta.pagos) ? cuenta.pagos.length : 0;
+  const listaPagosOrdenados = (cuenta && cuenta.pagos)
+    ? [...cuenta.pagos].sort((a, b) => {
+        const strFechaA = String(a.fechaRaw || '').substring(0, 10);
+        const strFechaB = String(b.fechaRaw || '').substring(0, 10);
+        if (strFechaA && strFechaB && strFechaA !== strFechaB) {
+          return strFechaB.localeCompare(strFechaA);
+        }
+        return (Number(b.id) || 0) - (Number(a.id) || 0);
+      })
+    : [];
+
+  const totalPagos = listaPagosOrdenados.length;
   const totalPaginas = Math.ceil(totalPagos / ITEMS_POR_PAGINA) || 1;
   const indiceInicio = (paginaActual - 1) * ITEMS_POR_PAGINA;
-  const pagosPaginados = (cuenta && cuenta.pagos) ? cuenta.pagos.slice(indiceInicio, indiceInicio + ITEMS_POR_PAGINA) : [];
+  const pagosPaginados = listaPagosOrdenados.slice(indiceInicio, indiceInicio + ITEMS_POR_PAGINA);
 
   return (
     <div>
@@ -244,10 +255,10 @@ function ModuloEstadoCuenta({ cuentaId, alVolver, mostrarMensaje }) {
 
               {/* Filas completas para impresión/PDF */}
               <tbody className="only-print">
-                {(!cuenta.pagos || cuenta.pagos.length === 0) ? (
+                {listaPagosOrdenados.length === 0 ? (
                   <tr><td colSpan="6" className="text-center text-muted" style={{ padding: '1rem' }}>Sin pagos registrados.</td></tr>
                 ) : (
-                  cuenta.pagos.map((pago) => (
+                  listaPagosOrdenados.map((pago) => (
                     <tr key={`print-${pago.id}`}>
                       <td>{pago.fecha}</td>
                       <td>{pago.metodo}</td>
