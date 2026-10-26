@@ -145,7 +145,7 @@ function ModuloEstadoCuenta({ cuentaId, alVolver, mostrarMensaje }) {
         {/* Caja de Registro de Abono */}
         {saldoTotal <= 0.005 ? (
           <div className="no-print" style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '4px', padding: '1rem 1.5rem', color: '#166534', fontWeight: 'bold', marginBottom: '1.5rem', textAlign: 'center', fontSize: '0.95rem' }}>
-            ✓ Esta cuenta se encuentra totalmente pagada y cancelada. No hay saldo pendiente por cobrar.
+            Esta cuenta se encuentra totalmente pagada y cancelada. No hay saldo pendiente por cobrar.
           </div>
         ) : (
           <div className="caja-registro-pago no-print">

@@ -115,6 +115,16 @@ function ModuloCotizador({ alGuardarEnCartera, mostrarMensaje }) {
     }
   };
 
+  const seleccionarFrecuencia = (nuevaFrecuencia) => {
+    setFrecuencia(nuevaFrecuencia);
+    if (cotizacionCalculada) {
+      setCotizacionCalculada(prev => ({
+        ...prev,
+        frecuencia: nuevaFrecuencia
+      }));
+    }
+  };
+
   const reiniciar = () => {
     setNombre('');
     setCedula('');
@@ -124,6 +134,7 @@ function ModuloCotizador({ alGuardarEnCartera, mostrarMensaje }) {
     setAbonoIngresado('');
     setMinimoAbono(0);
     setAnos(1);
+    setFrecuencia('quincenal');
     setCotizacionCalculada(null);
     setPaso('formulario');
   };
@@ -222,18 +233,6 @@ function ModuloCotizador({ alGuardarEnCartera, mostrarMensaje }) {
               </div>
             </div>
 
-            <div className="form-group">
-              <label>Frecuencia de Pago</label>
-              <select
-                className="form-control"
-                value={frecuencia}
-                onChange={(e) => setFrecuencia(e.target.value)}
-              >
-                <option value="quincenal">Quincenal (24 cuotas / año)</option>
-                <option value="mensual">Mensual (12 cuotas / año)</option>
-              </select>
-            </div>
-
             <button type="submit" className="btn btn-primary w-full" style={{ marginTop: '0.5rem' }}>
               Generar Cotización
             </button>
@@ -300,17 +299,61 @@ function ModuloCotizador({ alGuardarEnCartera, mostrarMensaje }) {
               </table>
             </div>
 
+            <div style={{ marginBottom: '1rem', textAlign: 'center' }} className="no-print">
+              <p style={{ fontSize: '0.9rem', color: '#334155', margin: 0, fontWeight: 600 }}>
+                Haga clic sobre una opción para seleccionar entre modalidad <strong>Quincenal</strong> o <strong>Mensual</strong>:
+              </p>
+            </div>
+
             <div className="cuotas-box-grid">
-              <div className={`cuota-card ${cotizacionCalculada.frecuencia === 'quincenal' ? 'destacada' : ''}`}>
-                <div className="cuota-titulo">Opción Quincenal ({cotizacionCalculada.cuotasQuincenas} cuotas)</div>
+              <div
+                className={`cuota-card ${cotizacionCalculada.frecuencia === 'quincenal' ? 'destacada' : ''}`}
+                onClick={() => seleccionarFrecuencia('quincenal')}
+                role="button"
+                tabIndex={0}
+                title="Haga clic para elegir modalidad Quincenal"
+              >
+                <div className="cuota-titulo">
+                  Opción Quincenal ({cotizacionCalculada.cuotasQuincenas} cuotas)
+                </div>
                 <div className="cuota-monto">{formatearMoneda(cotizacionCalculada.cuotaQuincenal)}</div>
                 <div className="cuota-sub">Interés quincenal: {formatearMoneda(cotizacionCalculada.interesQuincenal)}</div>
+                <div className="no-print" style={{ marginTop: '0.65rem' }}>
+                  {cotizacionCalculada.frecuencia === 'quincenal' ? (
+                    <span style={{ display: 'inline-block', background: 'var(--rojo)', color: '#ffffff', fontWeight: 700, padding: '0.25rem 0.65rem', borderRadius: '4px', fontSize: '0.75rem', letterSpacing: '0.03em' }}>
+                      MODALIDAD SELECCIONADA
+                    </span>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                      Clic para seleccionar Quincenal
+                    </span>
+                  )}
+                </div>
               </div>
 
-              <div className={`cuota-card ${cotizacionCalculada.frecuencia === 'mensual' ? 'destacada' : ''}`}>
-                <div className="cuota-titulo">Opción Mensual ({cotizacionCalculada.cuotasMeses} cuotas)</div>
+              <div
+                className={`cuota-card ${cotizacionCalculada.frecuencia === 'mensual' ? 'destacada' : ''}`}
+                onClick={() => seleccionarFrecuencia('mensual')}
+                role="button"
+                tabIndex={0}
+                title="Haga clic para elegir modalidad Mensual"
+              >
+                <div className="cuota-titulo">
+                  Opción Mensual ({cotizacionCalculada.cuotasMeses} cuotas)
+                </div>
                 <div className="cuota-monto">{formatearMoneda(cotizacionCalculada.cuotaMensual)}</div>
                 <div className="cuota-sub">Interés mensual: {formatearMoneda(cotizacionCalculada.interesMensual)}</div>
+                <div className="no-print" style={{ marginTop: '0.65rem' }}>
+                  {cotizacionCalculada.frecuencia === 'mensual' ? (
+                    <span style={{ display: 'inline-block', background: 'var(--rojo)', color: '#ffffff', fontWeight: 700, padding: '0.25rem 0.65rem', borderRadius: '4px', fontSize: '0.75rem', letterSpacing: '0.03em' }}>
+                      MODALIDAD SELECCIONADA
+                    </span>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                      Clic para seleccionar Mensual
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
