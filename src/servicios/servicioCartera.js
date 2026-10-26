@@ -111,7 +111,21 @@ class ServicioCartera {
   async registrarPago(cotizacionId, { fecha, metodo, monto, nota }) {
     const montoNum = parseFloat(monto);
     if (isNaN(montoNum) || montoNum <= 0) {
-      throw new Error('El monto debe ser mayor a 0');
+      throw new Error('El monto del abono debe ser mayor a 0');
+    }
+
+    const cotizacion = await Cotizacion.findByPk(cotizacionId);
+    if (!cotizacion) {
+      throw new Error('La cotización no fue encontrada');
+    }
+
+    const saldoPendiente = Math.round((parseFloat(cotizacion.capitalRestante || 0) + parseFloat(cotizacion.interesRestante || 0)) * 100) / 100;
+    if (saldoPendiente <= 0) {
+      throw new Error('Esta cuenta ya se encuentra totalmente saldada');
+    }
+
+    if (montoNum > saldoPendiente) {
+      throw new Error(`El monto ($${montoNum.toFixed(2)}) no puede ser mayor al saldo total pendiente ($${saldoPendiente.toFixed(2)})`);
     }
 
     let fechaFormateada = fecha;
@@ -152,7 +166,24 @@ class ServicioCartera {
   async actualizarPago(cotizacionId, pagoId, { fecha, metodo, monto, nota }) {
     const montoNum = parseFloat(monto);
     if (isNaN(montoNum) || montoNum <= 0) {
-      throw new Error('El monto debe ser mayor a 0');
+      throw new Error('El monto del abono debe ser mayor a 0');
+    }
+
+    const cotizacion = await Cotizacion.findByPk(cotizacionId);
+    if (!cotizacion) {
+      throw new Error('La cuenta no fue encontrada');
+    }
+
+    const pagoExistente = await Pago.findOne({ where: { id: pagoId, cotizacionId } });
+    if (!pagoExistente) {
+      throw new Error('El pago no existe');
+    }
+
+    const saldoActual = Math.round((parseFloat(cotizacion.capitalRestante || 0) + parseFloat(cotizacion.interesRestante || 0)) * 100) / 100;
+    const maximoPermitido = Math.round((saldoActual + parseFloat(pagoExistente.monto || 0)) * 100) / 100;
+
+    if (montoNum > maximoPermitido) {
+      throw new Error(`El monto ($${montoNum.toFixed(2)}) no puede ser mayor al saldo disponible para este pago ($${maximoPermitido.toFixed(2)})`);
     }
 
     let fechaFormateada = fecha;

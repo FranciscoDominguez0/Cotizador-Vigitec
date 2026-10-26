@@ -30,11 +30,15 @@ function ModalEditarPago({ pago, cotizacionId, alCerrar, alGuardado, mostrarMens
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fecha, metodo, monto: montoNum })
       });
-      if (!res.ok) throw new Error();
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'No se pudo actualizar el pago');
+      }
+      mostrarMensaje('Pago actualizado y saldos recalculados correctamente.');
       alGuardado();
     } catch (err) {
       console.error(err);
-      mostrarMensaje('No se pudo actualizar el pago', 'error');
+      mostrarMensaje(err.message || 'No se pudo actualizar el pago', 'error');
     } finally {
       setGuardando(false);
     }

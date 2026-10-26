@@ -20,27 +20,28 @@ class ServicioAmortizacion {
     const interesPorCuotaTeorica = this.redondear(cotizacion.interesTotal / cuotasTotales);
 
     const pagosActualizados = listaPagos.map((pago) => {
-      const monto = parseFloat(pago.monto);
-      let abonoInteres = 0;
-      let abonoCapital = 0;
+      const monto = this.redondear(parseFloat(pago.monto));
 
-      if (monto >= interesPorCuotaTeorica) {
-        abonoInteres = interesPorCuotaTeorica;
-        abonoCapital = monto - interesPorCuotaTeorica;
-      } else {
-        abonoInteres = monto;
-        abonoCapital = 0;
+      // 1. Cubrir primero la cuota de interés teórica (hasta lo que quede de interés pendiente)
+      const cuotaInteres = Math.min(interesPorCuotaTeorica, interesRestante);
+      let abonoInteres = Math.min(monto, cuotaInteres);
+      let sobrante = this.redondear(monto - abonoInteres);
+
+      // 2. El sobrante reduce directamente el capital pendiente
+      let abonoCapital = Math.min(sobrante, capitalRestante);
+      sobrante = this.redondear(sobrante - abonoCapital);
+
+      // 3. Si aún queda dinero sobrante (por ejemplo si el capital ya se saldó o estaba en 0),
+      // ese sobrante amortiza el resto del interés pendiente para que todo el dinero abone a la deuda.
+      if (sobrante > 0) {
+        const interesDisponible = this.redondear(interesRestante - abonoInteres);
+        const extraInteres = Math.min(sobrante, interesDisponible);
+        abonoInteres = this.redondear(abonoInteres + extraInteres);
+        sobrante = this.redondear(sobrante - extraInteres);
       }
 
-      if (abonoInteres > interesRestante) {
-        const sobrante = abonoInteres - interesRestante;
-        abonoInteres = interesRestante;
-        abonoCapital += sobrante;
-      }
-
-      if (abonoCapital > capitalRestante) {
-        abonoCapital = capitalRestante;
-      }
+      abonoInteres = this.redondear(abonoInteres);
+      abonoCapital = this.redondear(abonoCapital);
 
       interesRestante = this.redondear(interesRestante - abonoInteres);
       capitalRestante = this.redondear(capitalRestante - abonoCapital);
@@ -55,9 +56,9 @@ class ServicioAmortizacion {
         fecha: pago.fecha,
         fechaRaw: pago.fechaRaw,
         metodo: pago.metodo,
-        monto: this.redondear(monto),
-        interes: this.redondear(abonoInteres),
-        capital: this.redondear(abonoCapital),
+        monto: monto,
+        interes: abonoInteres,
+        capital: abonoCapital,
         saldoRestante: saldoRestanteTotal,
         nota: pago.nota
       };
