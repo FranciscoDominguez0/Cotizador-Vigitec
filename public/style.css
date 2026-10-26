@@ -1,0 +1,1065 @@
+/* =========================================================
+   // VIGITEC SECURITY - SISTEMA FINANCIERO
+   Paleta Profesional: Fondo Blanco, Detalles en Rojo y Texto Oscuro
+   Diseño Limpio, Sencillo y Corporativo
+   ========================================================= */
+
+:root {
+  --fondo-pagina: #f8fafc;
+  --fondo-tarjeta: #ffffff;
+  --fondo-cabecera: #ffffff;
+  --fondo-input: #ffffff;
+  --borde: #e2e8f0;
+  --borde-hover: #cbd5e1;
+
+  --rojo: #dc2626;
+  --rojo-hover: #b91c1c;
+  --rojo-fondo: #fef2f2;
+  --rojo-borde: #fecaca;
+
+  --texto-principal: #0f172a;
+  --texto-secundario: #475569;
+  --texto-muted: #64748b;
+
+  --verde: #16a34a;
+  --verde-fondo: #f0fdf4;
+  --verde-borde: #bbf7d0;
+
+  --sombra-suave: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --sombra-tarjeta: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  background-color: var(--fondo-pagina);
+  color: var(--texto-principal);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   CABECERA BLANCA CON LÍNEA ROJA CORPORATIVA
+   ========================================================= */
+.app-header {
+  background-color: var(--fondo-cabecera);
+  border-bottom: 3px solid var(--rojo);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.header-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--texto-principal);
+  user-select: none;
+}
+
+.brand-logo-img {
+  height: 36px;
+  width: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+.doc-logo-img {
+  height: 42px;
+  width: auto;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.brand-slashes {
+  color: var(--rojo);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.5rem;
+  margin-right: -0.1rem;
+}
+
+.brand-tag {
+  font-size: 0.75rem;
+  color: var(--texto-muted);
+  font-weight: 500;
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  border-left: 1px solid var(--borde);
+  padding-left: 0.6rem;
+}
+
+/* NAVEGACIÓN SENCILLA */
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  background-color: transparent;
+  color: var(--texto-secundario);
+  border: 1px solid var(--borde);
+  padding: 0.6rem 1.3rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-btn:hover {
+  color: var(--rojo);
+  border-color: var(--rojo);
+  background-color: var(--rojo-fondo);
+}
+
+.nav-btn.active {
+  background-color: var(--rojo);
+  color: #ffffff;
+  border-color: var(--rojo);
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.3);
+}
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL Y TARJETAS
+   ========================================================= */
+.main-wrapper {
+  max-width: 980px;
+  margin: 2rem auto;
+  padding: 0 1.25rem 3rem 1.25rem;
+}
+
+.card {
+  background-color: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 2rem;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.card-title-bar {
+  border-bottom: 2px solid var(--borde);
+  padding-bottom: 1rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-main {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.title-sub {
+  font-size: 0.88rem;
+  color: var(--texto-muted);
+  margin-top: 0.2rem;
+}
+
+/* =========================================================
+   FORMULARIOS LIMPIOS (SIN PLACEHOLDERS)
+   ========================================================= */
+.form-group {
+  margin-bottom: 1.35rem;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+  color: var(--texto-principal);
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  background-color: var(--fondo-input);
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  color: var(--texto-principal);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.input-hint {
+  font-size: 0.8rem;
+  color: var(--texto-muted);
+  margin-top: 0.35rem;
+}
+
+.badge-min {
+  background-color: var(--rojo-fondo);
+  color: var(--rojo);
+  border: 1px solid var(--rojo-borde);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-primary, .btn-danger {
+  background-color: var(--rojo);
+  color: #ffffff;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+  background-color: var(--rojo-hover);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+}
+
+.btn-success {
+  background-color: var(--verde);
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background-color: #15803d;
+}
+
+.btn-secondary {
+  background-color: #f1f5f9;
+  color: var(--texto-secundario);
+  border: 1px solid var(--borde);
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: var(--texto-principal);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.84rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* =========================================================
+   TABLAS
+   ========================================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+}
+
+.tabla-vigitec {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+  background-color: #ffffff;
+}
+
+.tabla-vigitec th {
+  background-color: #f8fafc;
+  color: var(--texto-secundario);
+  font-weight: 700;
+  padding: 0.85rem 1rem;
+  border-bottom: 2px solid var(--borde);
+  font-size: 0.86rem;
+}
+
+.tabla-vigitec td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--borde);
+  color: var(--texto-principal);
+}
+
+.tabla-vigitec tr:hover {
+  background-color: #f8fafc;
+}
+
+.text-red { color: var(--rojo); font-weight: 700; }
+.text-green { color: var(--verde); font-weight: 700; }
+.text-muted { color: var(--texto-muted); }
+.font-bold { font-weight: 700; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* =========================================================
+   HOJA DE COTIZACIÓN
+   ========================================================= */
+.documento-cotizacion {
+  background: #ffffff;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 2.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.doc-header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--rojo);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.doc-logo-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--texto-principal);
+}
+
+.doc-meta {
+  text-align: right;
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+.doc-meta .badge-folio {
+  display: inline-block;
+  background-color: var(--rojo);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  margin-bottom: 0.3rem;
+}
+
+.grid-dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bloque-info {
+  background-color: #f8fafc;
+  border: 1px solid var(--borde);
+  padding: 1.25rem;
+  border-radius: 4px;
+}
+
+.bloque-titulo {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--rojo);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 0.35rem;
+}
+
+.tabla-resumen {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-resumen th {
+  color: var(--texto-secundario);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.45rem 0;
+  font-size: 0.88rem;
+}
+
+.tabla-resumen td {
+  text-align: right;
+  color: var(--texto-principal);
+  padding: 0.45rem 0;
+  font-size: 0.92rem;
+}
+
+.fila-total td, .fila-total th {
+  border-top: 2px solid var(--rojo);
+  padding-top: 0.85rem;
+  font-size: 1.15rem;
+  color: var(--rojo);
+  font-weight: 800;
+}
+
+.cuotas-box-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.cuota-card {
+  background: #f8fafc;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.cuota-card.destacada {
+  border: 2px solid var(--rojo);
+  background: var(--rojo-fondo);
+}
+
+.cuota-titulo {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--texto-secundario);
+}
+
+.cuota-monto {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--texto-principal);
+  margin: 0.35rem 0;
+}
+
+.cuota-sub {
+  font-size: 0.82rem;
+  color: var(--texto-muted);
+}
+
+.firmas-impresion {
+  display: none;
+}
+
+.firma-caja {
+  text-align: center;
+}
+
+.firma-linea {
+  border-bottom: 1.5px solid #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.firma-nombre {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.firma-cargo {
+  font-size: 0.78rem;
+  color: var(--texto-muted);
+}
+
+.doc-footer {
+  display: none;
+}
+
+.barra-acciones-cotizacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--sombra-suave);
+}
+
+/* =========================================================
+   ESTADO DE CUENTA Y REGISTRO DE ABONOS
+   ========================================================= */
+.tarjetas-saldos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.saldo-item-card {
+  background-color: #f8fafc;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 1.1rem;
+}
+
+.saldo-item-card.total-deuda {
+  border-color: var(--rojo-borde);
+  background-color: var(--rojo-fondo);
+}
+
+.saldo-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--texto-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.saldo-valor {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--texto-principal);
+}
+
+.caja-registro-pago {
+  background-color: #f8fafc;
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--rojo);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.caja-pago-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.fila-formulario-pago {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 0.85rem;
+  align-items: flex-end;
+}
+
+/* =========================================================
+   MODAL EDITAR PAGO
+   ========================================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-box {
+  background-color: #ffffff;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  max-width: 440px;
+  width: 100%;
+  padding: 1.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--borde);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--texto-muted);
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  color: var(--texto-principal);
+}
+
+.modal-aviso {
+  font-size: 0.82rem;
+  color: var(--rojo);
+  background-color: var(--rojo-fondo);
+  border: 1px solid var(--rojo-borde);
+  padding: 0.65rem 0.85rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.modal-confirmacion-contenido {
+  color: var(--texto-secundario);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================================================
+   BARRA DE PAGINACIÓN
+   ========================================================= */
+.barra-paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0 0.5rem 0;
+  border-top: 1px solid var(--borde);
+  margin-top: 1rem;
+}
+
+.paginacion-info {
+  font-size: 0.85rem;
+  color: var(--texto-muted);
+}
+
+.paginacion-controles {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-pagina {
+  background-color: #ffffff;
+  border: 1px solid var(--borde);
+  color: var(--texto-principal);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-pagina:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.btn-pagina.activa {
+  background-color: var(--rojo);
+  border-color: var(--rojo);
+  color: #ffffff;
+}
+
+.btn-pagina:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   ALERTAS TOAST
+   ========================================================= */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast-item {
+  background-color: #ffffff;
+  color: var(--texto-principal);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--rojo);
+  padding: 0.85rem 1.25rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.toast-item.exito { border-left-color: var(--verde); }
+.toast-item.error { border-left-color: var(--rojo); }
+
+/* =========================================================
+   MODO IMPRESIÓN OFICIAL (PDF & PAPEL BLANCO)
+   ========================================================= */
+@media print {
+  @page {
+    margin: 1.2cm 1.4cm 1.4cm 1.4cm;
+    size: letter portrait;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-sizing: border-box !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 9.5pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .no-print,
+  .app-header,
+  .nav-buttons,
+  .toast-container,
+  .modal-overlay,
+  .barra-acciones-cotizacion,
+  .caja-registro-pago,
+  .btn-imprimir,
+  .btn-volver {
+    display: none !important;
+  }
+
+  .main-wrapper {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .documento-cotizacion {
+    background: #ffffff !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Membrete Ejecutivo Oficial */
+  .doc-header-brand {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    border-bottom: 2.5px solid #dc2626 !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 1.25rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .doc-logo-title {
+    font-size: 1.55rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .brand-slashes {
+    color: #dc2626 !important;
+  }
+
+  .doc-meta {
+    text-align: right !important;
+    font-size: 8.5pt !important;
+    color: #334155 !important;
+    line-height: 1.4 !important;
+  }
+
+  .doc-meta .badge-folio {
+    display: inline-block !important;
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 8pt !important;
+    padding: 0.25rem 0.65rem !important;
+    border-radius: 3px !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  /* Grilla de Resumen en 2 Columnas */
+  .grid-dos-columnas {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+    margin-bottom: 1.2rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .bloque-info {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    padding: 0.85rem 1rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .bloque-titulo {
+    font-size: 8.5pt !important;
+    font-weight: 800 !important;
+    color: #dc2626 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border-bottom: 1.5px solid #e2e8f0 !important;
+    padding-bottom: 0.35rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .tabla-resumen {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  .tabla-resumen th {
+    color: #475569 !important;
+    font-size: 8.5pt !important;
+    font-weight: 600 !important;
+    padding: 0.3rem 0 !important;
+    text-align: left !important;
+  }
+
+  .tabla-resumen td {
+    color: #0f172a !important;
+    font-size: 8.5pt !important;
+    padding: 0.3rem 0 !important;
+    text-align: right !important;
+  }
+
+  .fila-total td, .fila-total th {
+    border-top: 2px solid #dc2626 !important;
+    padding-top: 0.6rem !important;
+    font-size: 10.5pt !important;
+    color: #dc2626 !important;
+    font-weight: 800 !important;
+  }
+
+  /* Tarjetas de Saldos */
+  .tarjetas-saldos-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1.25rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .saldo-item-card {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    padding: 0.75rem 0.9rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .saldo-item-card.total-deuda {
+    background-color: #fef2f2 !important;
+    border: 2px solid #dc2626 !important;
+  }
+
+  .saldo-label {
+    font-size: 7.5pt !important;
+    font-weight: 800 !important;
+    color: #475569 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .saldo-valor {
+    font-size: 1.25rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    margin: 0.15rem 0 !important;
+  }
+
+  .saldo-valor.text-red {
+    color: #dc2626 !important;
+  }
+
+  /* Tarjetas de Cuotas (Cotizador) */
+  .cuotas-box-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+    margin-bottom: 1.25rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .cuota-card {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    padding: 0.85rem !important;
+    text-align: center !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .cuota-card.destacada {
+    background: #fef2f2 !important;
+    border: 2px solid #dc2626 !important;
+  }
+
+  .cuota-titulo {
+    font-size: 7.5pt !important;
+    font-weight: 800 !important;
+    color: #475569 !important;
+    text-transform: uppercase !important;
+  }
+
+  .cuota-monto {
+    font-size: 1.45rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    margin: 0.25rem 0 !important;
+  }
+
+  .cuota-sub {
+    font-size: 8pt !important;
+    color: #64748b !important;
+  }
+
+  /* Tabla de Historial Contable */
+  .table-wrapper {
+    overflow: visible !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .tabla-vigitec {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 8.5pt !important;
+  }
+
+  .tabla-vigitec thead {
+    display: table-header-group !important;
+  }
+
+  .tabla-vigitec tfoot {
+    display: table-footer-group !important;
+  }
+
+  .tabla-vigitec tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .tabla-vigitec th {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 7.5pt !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 0.55rem 0.75rem !important;
+    border: 1px solid #0f172a !important;
+  }
+
+  .tabla-vigitec td {
+    color: #0f172a !important;
+    padding: 0.5rem 0.75rem !important;
+    border: 1px solid #cbd5e1 !important;
+    font-size: 8.5pt !important;
+  }
+
+  .tabla-vigitec tbody tr:nth-child(even) td {
+    background-color: #f8fafc !important;
+  }
+
+  /* Sección de Firmas */
+  .firmas-impresion {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4.5rem !important;
+    margin-top: 2.75rem !important;
+    padding-top: 1rem !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .firma-caja {
+    text-align: center !important;
+  }
+
+  .firma-linea {
+    border-bottom: 1.5px solid #0f172a !important;
+    height: 38px !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .firma-nombre {
+    font-size: 8.5pt !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+  }
+
+  .firma-cargo {
+    font-size: 7.5pt !important;
+    color: #475569 !important;
+    margin-top: 0.2rem !important;
+  }
+
+  /* Pie Oficial de Página */
+  .doc-footer {
+    display: block !important;
+    margin-top: 2rem !important;
+    border-top: 1px solid #cbd5e1 !important;
+    padding-top: 0.75rem !important;
+    font-size: 7.5pt !important;
+    color: #64748b !important;
+    text-align: center !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .grid-dos-columnas, .cuotas-box-grid, .tarjetas-saldos-grid {
+    grid-template-columns: 1fr;
+  }
+  .fila-formulario-pago {
+    grid-template-columns: 1fr;
+  }
+}

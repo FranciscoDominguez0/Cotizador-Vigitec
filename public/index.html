@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>// VIGITEC SECURITY - Sistema Financiero</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
+  
+  <!-- Estilos Corporativos: Blanco, Rojo y Negro -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- React 18 y ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Babel Standalone para JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Utilidades y Constantes -->
+  <script src="js/utilidades/formato.js"></script>
+  <script src="js/constantes/kits.js"></script>
+
+  <!-- Componentes Modulares Reutilizables (Clean Code) -->
+  <script type="text/babel" src="js/componentes/ModalConfirmacion.jsx"></script>
+  <script type="text/babel" src="js/componentes/ModalEditarPago.jsx"></script>
+  <script type="text/babel" src="js/componentes/BarraPaginacion.jsx"></script>
+  <script type="text/babel" src="js/componentes/ModuloCotizador.jsx"></script>
+  <script type="text/babel" src="js/componentes/ModuloCartera.jsx"></script>
+  <script type="text/babel" src="js/componentes/ModuloEstadoCuenta.jsx"></script>
+</head>
+<body>
+
+  <!-- Contenedor Principal de React -->
+  <div id="root"></div>
+
+  <!-- Entrada Principal de la Aplicación -->
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

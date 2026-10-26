@@ -1,0 +1,62 @@
+services:
+  # =========================================================
+  # Base de Datos PostgreSQL ('db')
+  # Lee credenciales únicamente desde .env
+  # =========================================================
+  db:
+    image: postgres:17-alpine
+    container_name: vigitec_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      # Expone el puerto hacia todas las interfaces de red (0.0.0.0) para acceso por IP
+      - "0.0.0.0:${DB_PORT_EXTERNAL}:5432"
+    volumes:
+      - vigitec_datos_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      vigitec_red:
+        aliases:
+          - db
+          - postgres
+
+  # =========================================================
+  # Aplicación Web Vigitec (Node.js + React)
+  # Lee credenciales únicamente desde .env
+  # =========================================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vigitec_app
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    ports:
+      - "0.0.0.0:${APP_PORT}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - vigitec_red
+
+volumes:
+  vigitec_datos_pg:
+    name: vigitec_datos_pg
+
+networks:
+  vigitec_red:
+    name: vigitec_red
+    driver: bridge

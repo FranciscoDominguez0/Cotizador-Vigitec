@@ -1,0 +1,41 @@
+# =========================================================
+# VIGITEC SECURITY GROUP - .gitignore
+# =========================================================
+
+# Dependencias de Node
+node_modules/
+package-lock.json.bak
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno y secretos (NUNCA subir a Git)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Archivos de logs y depuración
+logs/
+*.log
+
+# Archivos de sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos temporales o de tests
+.temp/
+temp/
+coverage/
+
+# Datos persistentes locales de base de datos (si hubiera dumps)
+*.dump
+*.sql.bak
